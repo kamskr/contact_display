@@ -8,7 +8,11 @@ const StyledContainer = styled.div`
   left: 0;
   right: 0;
   height: 60px;
-  background-color: red;
+  background: linear-gradient(
+    to right,
+    ${({ theme }) => theme.blue},
+    ${({ theme }) => theme.green}
+  );
   text-align: center;
   vertical-align: middle;
 `;
@@ -16,6 +20,7 @@ const StyledContainer = styled.div`
 const StyledHeader = styled.h1`
   color: white;
   margin: auto;
+  font-size: ${({ theme }) => theme.fontSize.m};
 `;
 
 const Navbar = () => {
