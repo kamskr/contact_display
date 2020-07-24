@@ -10,6 +10,7 @@ const StyledContainer = styled.div`
   margin-top: 110px;
 `;
 const StyledInnerContainer = styled.div`
+  z-index: 9999;
   position: fixed;
   width: 100%;
   display: flex;
