@@ -54,17 +54,19 @@ export class MainView extends Component {
   handleToggleChange = (id) => {
     const index = this.state.contacts.findIndex((o) => o.id === id);
     let newContacts = [...this.state.contacts];
-    newContacts[index] = {
-      ...newContacts[index],
-      checked: true,
-    };
+    if (newContacts[index].checked === true) {
+      newContacts[index] = {
+        ...newContacts[index],
+        checked: false,
+      };
+    } else {
+      newContacts[index] = {
+        ...newContacts[index],
+        checked: true,
+      };
+    }
 
-    console.log(
-      'all',
-      newContacts.filter((o) => o.id === id),
-    );
     this.setState({ contacts: newContacts });
-    console.log(this.state.contacts.filter((o) => o.id === id));
   };
 
   filterByValue(array, string) {
@@ -80,7 +82,6 @@ export class MainView extends Component {
       .get('https://teacode-recruitment-challenge.s3.eu-central-1.amazonaws.com/users.json')
       .then((res) => {
         this.setState({ contacts: res.data });
-        console.log(this.state.contacts);
       })
       .catch((err) => {
         console.log(err);

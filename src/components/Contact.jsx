@@ -54,7 +54,6 @@ const StyledToggleWrapper = styled.div`
 class Contact extends Component {
   handleToggleChange = () => {
     this.props.handleToggleChange(this.props.contact.id);
-    console.log(this.props.contact.checked);
   };
   render() {
     const {
