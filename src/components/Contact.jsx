@@ -35,11 +35,11 @@ const StyledInnerWrapper = styled.div`
   flex-direction: column;
 `;
 const StyledHeader = styled.h2`
-  font-size: m;
+  font-size: ${({ theme }) => theme.fontSize.m};
   margin: 2px 10px;
 `;
 const StyledParagraph = styled.p`
-  font-size: s;
+  font-size: ${({ theme }) => theme.fontSize.s};
   margin: 2px 10px;
 `;
 

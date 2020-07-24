@@ -4,7 +4,7 @@ const theme = {
   creamy: '#ECE9DD',
   creamyDark: 'rgba(171, 168, 157, 0.5)',
   fontSize: {
-    s: '1.6rem',
+    s: '1.2rem',
     m: '2.1rem',
     l: '2.4rem',
   },

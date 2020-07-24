@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import Navbar from './Navbar';
 import SearchBar from './SearchBar';
 import Contact from './Contact';
 
 import axios from 'axios';
+
+const StyledContainer = styled.div`
+  width: 100%;
+  margin-top: 110px;
+`;
 
 export class MainView extends Component {
   constructor() {
@@ -33,11 +39,13 @@ export class MainView extends Component {
       <div>
         <Navbar />
         <SearchBar />
-        {contacts ? (
-          contacts.map((contact) => <Contact contact={contact} key={contact.id} />)
-        ) : (
-          <p>...Loading</p>
-        )}
+        <StyledContainer>
+          {contacts ? (
+            contacts.map((contact) => <Contact contact={contact} key={contact.id} />)
+          ) : (
+            <p>...Loading</p>
+          )}
+        </StyledContainer>
       </div>
     );
   }

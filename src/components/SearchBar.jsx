@@ -2,8 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledContainer = styled.div`
+  position: fixed;
+  width: 100%;
   display: flex;
-  margin-top: 60px;
+  top: 60px;
   height: 50px;
   background-color: white;
 `;
