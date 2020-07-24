@@ -57,6 +57,10 @@ export class MainView extends Component {
     });
   }
 
+  handleToggleChange = (id) => {
+    console.log(`change in ${id}`);
+  };
+
   async getData() {
     axios
       .get('https://teacode-recruitment-challenge.s3.eu-central-1.amazonaws.com/users.json')
@@ -85,7 +89,13 @@ export class MainView extends Component {
           {contacts ? (
             this.filterByValue(contacts, this.state.value)
               .sort((a, b) => (a.last_name > b.last_name ? 1 : -1))
-              .map((contact) => <Contact contact={contact} key={contact.id} />)
+              .map((contact) => (
+                <Contact
+                  contact={contact}
+                  key={contact.id}
+                  handleToggleChange={this.handleToggleChange}
+                />
+              ))
           ) : (
             <p>...Loading</p>
           )}

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import Toggle from 'react-toggle';
+import 'react-toggle/style.css';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -33,6 +35,7 @@ const StyledInitials = styled.p`
 const StyledInnerWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin-right: auto;
 `;
 const StyledHeader = styled.h2`
   font-size: ${({ theme }) => theme.fontSize.m};
@@ -43,7 +46,22 @@ const StyledParagraph = styled.p`
   margin: 2px 10px;
 `;
 
+const StyledToggleWrapper = styled.div`
+  margin-right: 20px;
+  z-index: 1;
+`;
+
 class Contact extends Component {
+  constructor() {
+    super();
+    this.state = {
+      toggle: false,
+    };
+  }
+  handleToggleChange = () => {
+    this.setState({ toggle: !this.state.toggle });
+    this.props.handleToggleChange(this.props.contact.id);
+  };
   render() {
     const {
       contact: { first_name, last_name, email, avatar },
@@ -67,6 +85,13 @@ class Contact extends Component {
           </StyledHeader>
           <StyledParagraph>{email}</StyledParagraph>
         </StyledInnerWrapper>
+        <StyledToggleWrapper>
+          <Toggle
+            id="cheese-status"
+            defaultChecked={this.state.toggle}
+            onChange={this.handleToggleChange}
+          />
+        </StyledToggleWrapper>
       </StyledContainer>
     );
   }
