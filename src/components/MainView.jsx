@@ -49,6 +49,23 @@ export class MainView extends Component {
   handleChange = (event) => {
     this.setState({ value: event.target.value });
   };
+
+  handleToggleChange = (id) => {
+    const index = this.state.contacts.findIndex((o) => o.id === id);
+    let newContacts = [...this.state.contacts];
+    newContacts[index] = {
+      ...newContacts[index],
+      checked: true,
+    };
+
+    console.log(
+      'all',
+      newContacts.filter((o) => o.id === id),
+    );
+    this.setState({ contacts: newContacts });
+    console.log(this.state.contacts.filter((o) => o.id === id));
+  };
+
   filterByValue(array, string) {
     return array.filter((o) => {
       return Object.keys(o).some((k) => {
@@ -56,10 +73,6 @@ export class MainView extends Component {
       });
     });
   }
-
-  handleToggleChange = (id) => {
-    console.log(`change in ${id}`);
-  };
 
   async getData() {
     axios
@@ -89,10 +102,10 @@ export class MainView extends Component {
           {contacts ? (
             this.filterByValue(contacts, this.state.value)
               .sort((a, b) => (a.last_name > b.last_name ? 1 : -1))
-              .map((contact) => (
+              .map((contact, index) => (
                 <Contact
                   contact={contact}
-                  key={contact.id}
+                  key={index}
                   handleToggleChange={this.handleToggleChange}
                 />
               ))

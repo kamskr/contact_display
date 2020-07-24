@@ -52,15 +52,9 @@ const StyledToggleWrapper = styled.div`
 `;
 
 class Contact extends Component {
-  constructor() {
-    super();
-    this.state = {
-      toggle: false,
-    };
-  }
   handleToggleChange = () => {
-    this.setState({ toggle: !this.state.toggle });
     this.props.handleToggleChange(this.props.contact.id);
+    console.log(this.props.contact.checked);
   };
   render() {
     const {
@@ -88,7 +82,7 @@ class Contact extends Component {
         <StyledToggleWrapper>
           <Toggle
             id="cheese-status"
-            defaultChecked={this.state.toggle}
+            checked={this.props.contact.checked ? true : false}
             onChange={this.handleToggleChange}
           />
         </StyledToggleWrapper>
