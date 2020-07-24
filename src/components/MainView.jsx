@@ -10,7 +10,7 @@ export class MainView extends Component {
     super();
     this.state = {
       search: '',
-      contacts: [],
+      contacts: undefined,
     };
   }
 
@@ -29,20 +29,15 @@ export class MainView extends Component {
   }
   render() {
     const { contacts } = this.state;
-    console.log('Contacts', contacts);
     return (
       <div>
         <Navbar />
         <SearchBar />
         {contacts ? (
-          contacts.map(({ first_name, last_name }) => {
-            console.log(first_name);
-            // <Contact first_name last_name />;
-          })
+          contacts.map((contact) => <Contact contact={contact} key={contact.id} />)
         ) : (
           <p>...Loading</p>
         )}
-        <Contact />
       </div>
     );
   }
