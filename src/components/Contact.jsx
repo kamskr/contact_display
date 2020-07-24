@@ -11,22 +11,62 @@ const StyledContainer = styled.div`
   border-top: 2px solid ${({ theme }) => theme.creamyDark};
 `;
 const StyledImage = styled.img`
+  margin-left: 10px;
   border-radius: 50%;
+  height: 50px;
+  width: 50px;
+`;
+const StyledInitialsAvatar = styled.span`
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: white;
+  border: 2px solid ${({ theme }) => theme.creamyDark};
+`;
+const StyledInitials = styled.p`
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.creamyDark};
+  font-weight: bold;
 `;
 const StyledInnerWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
+const StyledHeader = styled.h2`
+  font-size: m;
+  margin: 2px 10px;
+`;
+const StyledParagraph = styled.p`
+  font-size: s;
+  margin: 2px 10px;
+`;
 
 class Contact extends Component {
   render() {
     const {
-      contact: { id, first_name, last_name, email, gender, avatar },
+      contact: { first_name, last_name, email, avatar },
     } = this.props;
-    console.log(first_name);
     return (
       <StyledContainer>
-        <StyledImage src={avatar} />
+        {avatar ? (
+          <StyledImage src={avatar} />
+        ) : (
+          <StyledInitialsAvatar>
+            <StyledInitials>
+              {first_name.charAt(0)}
+              {last_name.charAt(0)}
+            </StyledInitials>
+          </StyledInitialsAvatar>
+        )}
+
+        <StyledInnerWrapper>
+          <StyledHeader>
+            {first_name} {last_name}
+          </StyledHeader>
+          <StyledParagraph>{email}</StyledParagraph>
+        </StyledInnerWrapper>
       </StyledContainer>
     );
   }
